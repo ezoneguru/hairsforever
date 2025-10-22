@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Patch Clinic - Portfolio Website Templates Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 3rem;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .template-card.featured {
+            border: 3px solid #667eea;
+        }
+
+        .template-header {
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .template-card:nth-child(1) .template-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .template-card:nth-child(2) .template-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+
+        .template-card:nth-child(3) .template-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #667eea 100%);
+        }
+
+        .template-card:nth-child(4) .template-header {
+            background: linear-gradient(135deg, #6B46C1 0%, #EC4899 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f39c12;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.4);
+        }
+
+        .template-header h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-price {
+            font-size: 3rem;
+            color: white;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-tagline {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.05rem;
+        }
+
+        .template-body {
+            padding: 2.5rem;
+        }
+
+        .template-body h4 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .cross-icon {
+            width: 24px;
+            height: 24px;
+            background: #e0e0e0;
+            color: #999;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .template-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .comparison-section {
+            background: white;
+            padding: 3rem;
+            margin: 3rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .comparison-section h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .comparison-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .comparison-table .yes {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .comparison-table .no {
+            color: #e74c3c;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4rem;
+            margin: 3rem auto;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        .tech-stack {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .tech-stack h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .templates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .template-buttons {
+                flex-direction: column;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.8rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-section {
+                padding: 2rem;
+            }
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hair Patch Clinic Portfolio Templates</h1>
+            <p>Professional Website Solutions for Every Budget</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Welcome to Our Template Showcase</h2>
+            <p>We've created four stunning portfolio website templates specifically designed for Hair Patch Clinics. Each template is carefully crafted to match different budget levels while maintaining professional quality and functionality.</p>
+            <p>All templates are <strong>100% HTML & CSS</strong>, fully responsive, and ready to deploy. They feature modern designs with gradient colors, smooth animations, and user-friendly layouts that work perfectly on all devices.</p>
+
+            <div class="tech-stack">
+                <h4>Built With Modern Technologies:</h4>
+                <div class="tech-badges">
+                    <span class="tech-badge">HTML5</span>
+                    <span class="tech-badge">CSS3</span>
+                    <span class="tech-badge">Responsive Design</span>
+                    <span class="tech-badge">Mobile-First</span>
+                    <span class="tech-badge">Cross-Browser Compatible</span>
+                    <span class="tech-badge">No Dependencies</span>
+                    <span class="tech-badge">Fast Loading</span>
+                    <span class="tech-badge">SEO Friendly</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Template Options</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Responsive</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Dependencies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Customizable</div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: #667eea; font-size: 2.5rem; margin: 3rem 0 2rem;">Choose Your Perfect Template</h2>
+
+        <div class="templates-grid">
+            <!-- Template 1: Basic-Starter -->
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Basic-Starter</h3>
+                    <div class="template-price">₹2,000</div>
+                    <p class="template-tagline">Simple & Elegant</p>
+                </div>
+                <div class="template-body">
+                    <h4>Perfect for Budget-Conscious Clients</h4>
+                    <ul class="features-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Single-page clean design</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Header with navigation</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Hero section with CTA</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>About Us section</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>4 Service cards</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Contact information</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Professional footer</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Fully responsive</span>
+                        </li>
+                        <li>
+                            <span class="cross-icon">✗</span>
+                            <span>No contact forms</span>
+                        </li>
+                        <li>
+                            <span class="cross-icon">✗</span>
+                            <span>No testimonials</span>
+                        </li>
+                    </ul>
+                    <div class="template-buttons">
+                        <a href="../basic-starter-2k/index.html" class="btn btn-primary" target="_blank">View Demo</a>
+                        <a href="../basic-starter-2k/index.html" download class="btn btn-secondary">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 2: Basic-Essential -->
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Basic-Essential</h3>
+                    <div class="template-price">₹5,000</div>
+                    <p class="template-tagline">Enhanced Features</p>
+                </div>
+                <div class="template-body">
+                    <h4>Great Value for Growing Businesses</h4>
+                    <ul class="features-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Everything in Starter</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span><strong>Lead capture form</strong></span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>6 Enhanced service cards</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Before/After gallery (3 items)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Client testimonials (3)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Why Choose Us section</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Better styling & animations</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Call-to-action buttons</span>
+                        </li>
+                        <li>
+                            <span class="cross-icon">✗</span>
+                            <span>No FAQ section</span>
+                        </li>
+                        <li>
+                            <span class="cross-icon">✗</span>
+                            <span>No social media integration</span>
+                        </li>
+                    </ul>
+                    <div class="template-buttons">
+                        <a href="../basic-essential-5k/index.html" class="btn btn-primary" target="_blank">View Demo</a>
+                        <a href="../basic-essential-5k/index.html" download class="btn btn-secondary">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 3: Basic-Professional -->
+            <div class="template-card featured">
+                <div class="template-header">
+                    <div class="popular-badge">POPULAR</div>
+                    <h3>Basic-Professional</h3>
+                    <div class="template-price">₹7,000</div>
+                    <p class="template-tagline">Professional Excellence</p>
+                </div>
+                <div class="template-body">
+                    <h4>Complete Professional Solution</h4>
+                    <ul class="features-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Everything in Essential</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span><strong>FAQ section (6 questions)</strong></span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>4-step process timeline</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>9 Service cards with pricing</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Extended gallery (6 items)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Social media integration</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Multiple contact forms</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Stats counter section</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Enhanced testimonials with avatars</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Multi-section footer</span>
+                        </li>
+                    </ul>
+                    <div class="template-buttons">
+                        <a href="../basic-professional-7k/index.html" class="btn btn-primary" target="_blank">View Demo</a>
+                        <a href="../basic-professional-7k/index.html" download class="btn btn-secondary">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 4: Basic-Premium -->
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Basic-Premium</h3>
+                    <div class="template-price">₹10,000</div>
+                    <p class="template-tagline">Luxury & Complete</p>
+                </div>
+                <div class="template-body">
+                    <h4>Ultimate Premium Package</h4>
+                    <ul class="features-list">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Everything in Professional</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span><strong>WhatsApp floating button</strong></span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Top bar with special offers</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Video section placeholder</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Pricing comparison table (3 tiers)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Blog/Articles section (3 posts)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Google Maps integration</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Advanced appointment form</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>5-stat floating cards</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Premium animations & effects</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Comprehensive footer (4 sections)</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Verified testimonial badges</span>
+                        </li>
+                    </ul>
+                    <div class="template-buttons">
+                        <a href="../basic-premium-10k/index.html" class="btn btn-primary" target="_blank">View Demo</a>
+                        <a href="../basic-premium-10k/index.html" download class="btn btn-secondary">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <h2>Feature Comparison Table</h2>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Starter<br>₹2,000</th>
+                            <th>Essential<br>₹5,000</th>
+                            <th>Professional<br>₹7,000</th>
+                            <th>Premium<br>₹10,000</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Responsive Design</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Header & Navigation</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Hero Section</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">Enhanced</td>
+                        </tr>
+                        <tr>
+                            <td>About Section</td>
+                            <td class="yes">Basic</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">Enhanced</td>
+                            <td class="yes">Premium</td>
+                        </tr>
+                        <tr>
+                            <td>Service Cards</td>
+                            <td class="yes">4</td>
+                            <td class="yes">6</td>
+                            <td class="yes">9</td>
+                            <td class="yes">6+</td>
+                        </tr>
+                        <tr>
+                            <td>Contact Forms</td>
+                            <td class="no">✗</td>
+                            <td class="yes">1 Form</td>
+                            <td class="yes">Multiple</td>
+                            <td class="yes">Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Gallery Section</td>
+                            <td class="no">✗</td>
+                            <td class="yes">3 Items</td>
+                            <td class="yes">6 Items</td>
+                            <td class="yes">4+ Items</td>
+                        </tr>
+                        <tr>
+                            <td>Testimonials</td>
+                            <td class="no">✗</td>
+                            <td class="yes">3</td>
+                            <td class="yes">3+</td>
+                            <td class="yes">3+ Verified</td>
+                        </tr>
+                        <tr>
+                            <td>FAQ Section</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">6 Q&A</td>
+                            <td class="yes">6 Q&A</td>
+                        </tr>
+                        <tr>
+                            <td>Process Timeline</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">4 Steps</td>
+                            <td class="yes">4 Steps</td>
+                        </tr>
+                        <tr>
+                            <td>Stats Counter</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">4 Stats</td>
+                            <td class="yes">5 Stats</td>
+                        </tr>
+                        <tr>
+                            <td>Social Media Links</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">✓</td>
+                            <td class="yes">✓</td>
+                        </tr>
+                        <tr>
+                            <td>WhatsApp Integration</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">Floating Button</td>
+                        </tr>
+                        <tr>
+                            <td>Video Section</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing Table</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">3 Tiers</td>
+                        </tr>
+                        <tr>
+                            <td>Blog Section</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">3 Articles</td>
+                        </tr>
+                        <tr>
+                            <td>Google Maps</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Top Bar</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="no">✗</td>
+                            <td class="yes">With Offers</td>
+                        </tr>
+                        <tr>
+                            <td>Animations</td>
+                            <td class="yes">Basic</td>
+                            <td class="yes">Good</td>
+                            <td class="yes">Advanced</td>
+                            <td class="yes">Premium</td>
+                        </tr>
+                        <tr>
+                            <td>Footer</td>
+                            <td class="yes">Simple</td>
+                            <td class="yes">Enhanced</td>
+                            <td class="yes">3 Sections</td>
+                            <td class="yes">4 Sections</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Choose Your Template?</h2>
+            <p>All templates are ready to use, fully customizable, and perfect for Hair Patch Clinics</p>
+            <div class="cta-buttons">
+                <a href="../basic-starter-2k/index.html" class="cta-btn" target="_blank">View Starter (₹2K)</a>
+                <a href="../basic-essential-5k/index.html" class="cta-btn" target="_blank">View Essential (₹5K)</a>
+                <a href="../basic-professional-7k/index.html" class="cta-btn" target="_blank">View Professional (₹7K)</a>
+                <a href="../basic-premium-10k/index.html" class="cta-btn" target="_blank">View Premium (₹10K)</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Hair Patch Clinic Portfolio Templates. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Built with HTML5 & CSS3 | Fully Responsive | No Dependencies</p>
+        </div>
+    </footer>
+</body>
+</html>
