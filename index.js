@@ -231,11 +231,36 @@ if (contactForm) {
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
 
+        // Validate phone number (must be exactly 10 digits)
+        const phone = data.mobile || "";
+        const phoneRegex = /^[0-9]{10}$/;
+
+        if (!phoneRegex.test(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return; // stop submission
+        }
+
+        // Send data to PHP endpoint
+        fetch("http://109.73.166.225/in/epr/facebook_lead_capture.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text()) // or .json() if PHP returns JSON
+        .then(result => {
+            console.log("Server response:", result);
+            alert("Thank you for your message! We will get back to you soon.");
+            this.reset();
+        })
+        .catch(error => {
+            console.error("Error submitting form:", error);
+            alert("There was a problem submitting your request. Please try again later.");
+        });
+
         // Log form data (in production, this would be sent to a server)
-        console.log('Form submitted:', data);
+        //console.log('Form submitted:', data);
 
         // Show success message
-        alert('Thank you for your message! We will get back to you soon.');
+        //alert('Thank you for your message! We will get back to you soon.');
 
         // Reset form
         this.reset();
