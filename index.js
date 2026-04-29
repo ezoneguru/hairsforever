@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initGalleryToggle();
     initProductsToggle();
     initSmoothScroll();
+    initContactForm();
 });
 
 /**
@@ -220,24 +221,100 @@ function initSmoothScroll() {
 }
 
 /**
- * Form Submission Handler (Optional - for demo purposes)
+ * Contact Form Submission Handler
+ * Sends form data via POST to the PHP backend
  */
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    // ===================================================================
+    // IMPORTANT: Replace this URL with your actual PHP endpoint URL
+    // Example: 'http://109.73.166.225/in/epr/contact_handler.php'
+    // ===================================================================
+    const FORM_ENDPOINT = 'http://109.73.166.225/in/epr/contact_handler.php';
+
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Get form data
+        const submitBtn = document.getElementById('submit-btn');
+        const originalBtnText = submitBtn.textContent;
+
+        // Disable button and show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        // Collect form data
         const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
 
-        // Log form data (in production, this would be sent to a server)
-        console.log('Form submitted:', data);
-
-        // Show success message
-        alert('Thank you for your message! We will get back to you soon.');
-
-        // Reset form
-        this.reset();
+        // Send POST request to PHP backend
+        fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            body: formData
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.status === 'success') {
+                    showFormMessage('success', data.message || 'Thank you! We will get back to you soon.');
+                    contactForm.reset();
+                } else {
+                    showFormMessage('error', data.message || 'Something went wrong. Please try again.');
+                }
+            })
+            .catch(function (error) {
+                console.error('Form submission error:', error);
+                showFormMessage('error', 'Network error. Please check your connection and try again.');
+            })
+            .finally(function () {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            });
     });
+}
+
+/**
+ * Display a success or error message below the form
+ * @param {string} type - 'success' or 'error'
+ * @param {string} message - The message to display
+ */
+function showFormMessage(type, message) {
+    // Remove any existing message
+    var existingMsg = document.getElementById('form-status-message');
+    if (existingMsg) existingMsg.remove();
+
+    var msgDiv = document.createElement('div');
+    msgDiv.id = 'form-status-message';
+    msgDiv.style.padding = '12px 16px';
+    msgDiv.style.marginTop = '16px';
+    msgDiv.style.borderRadius = '8px';
+    msgDiv.style.fontSize = '0.95rem';
+    msgDiv.style.fontWeight = '500';
+    msgDiv.style.textAlign = 'center';
+
+    if (type === 'success') {
+        msgDiv.style.backgroundColor = '#d4edda';
+        msgDiv.style.color = '#155724';
+        msgDiv.style.border = '1px solid #c3e6cb';
+    } else {
+        msgDiv.style.backgroundColor = '#f8d7da';
+        msgDiv.style.color = '#721c24';
+        msgDiv.style.border = '1px solid #f5c6cb';
+    }
+
+    msgDiv.textContent = message;
+
+    var form = document.getElementById('contact-form');
+    form.parentNode.insertBefore(msgDiv, form.nextSibling);
+
+    // Auto-remove after 8 seconds
+    setTimeout(function () {
+        if (msgDiv.parentNode) {
+            msgDiv.style.transition = 'opacity 0.5s';
+            msgDiv.style.opacity = '0';
+            setTimeout(function () { msgDiv.remove(); }, 500);
+        }
+    }, 8000);
 }
